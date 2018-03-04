@@ -81,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_x="194dp"
-            android:layout_y="327dp" />
+            android:layout_y="327dp"
+            android:entries="@array/spinnerActivityLevel"/>
 
         <TextView
             android:id="@+id/textViewSex"
@@ -98,7 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_x="186dp"
-            android:layout_y="366dp" />
+            android:layout_y="366dp"
+            android:entries="@array/spinnerSex"/>
 
 
         <LinearLayout
@@ -108,18 +110,18 @@
             android:paddingTop="100dp">
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/sendToDatabaseBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="@string/send_to_database"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:visibility="visible" />
 
             <Button
-                android:id="@+id/email_create_account_button"
+                android:id="@+id/btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="@string/sign_out"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />

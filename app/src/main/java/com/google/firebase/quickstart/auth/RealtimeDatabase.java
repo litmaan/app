@@ -12,8 +12,8 @@ public class RealtimeDatabase {
     public DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
     public FirebaseAuth myRef = FirebaseAuth.getInstance();
 
-    public void setValue(){
-        CurrentUser user = new CurrentUser(23,43.4,34.4);
+    public void setValue(CurrentUser value){
+        CurrentUser user = new CurrentUser(value.getWiek(),value.getWaga(),value.getWzrost(),value.getActivity(),value.getSex());
         mDatabase.child(myRef.getUid()).setValue(user);
 
 

@@ -35,7 +35,7 @@
     <string name="status_verification_succeeded">Verification succeeded</string>
     <string name="status_sign_in_failed">Sign-in failed</string>
     <string name="instant_validation">(instant validation)</string>
-    <string name="send_to_database">Wyślij do bazy danych</string>
+    <string name="send_to_database">Wyślij</string>
     <string name="firebase_status_fmt">User: %s</string>
     <string name="firebase_user_management">Firebase User Management</string>
 
@@ -50,4 +50,15 @@
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
     <string name="title_activity_goal">Goal</string>
+
+    <string-array name="spinnerActivityLevel">
+        <item>niska</item>
+        <item>średnia</item>
+        <item>wysoka</item>
+        <item>bardzo wysoka</item>
+    </string-array>
+    <string-array name="spinnerSex">
+        <item>kobieta</item>
+        <item>mężczyzna</item>
+    </string-array>
 </resources>

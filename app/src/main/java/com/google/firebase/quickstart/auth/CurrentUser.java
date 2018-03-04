@@ -10,17 +10,36 @@ public class CurrentUser {
     public int wiek;
     public double waga;
     public double wzrost;
+    public String activity;
+    public String sex;
 
 
-    CurrentUser(int wiek, double waga, double wzrost){
-
+    CurrentUser(int wiek, double waga, double wzrost, String activity, String sex){
         this.wiek = wiek;
         this.waga = waga;
         this.wzrost =wzrost;
+        this.activity = activity;
+        this.sex = sex;
+
     }
 
 
 
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
 
     public int getWiek() {

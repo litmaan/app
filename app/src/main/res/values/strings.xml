@@ -2,10 +2,8 @@
     <string name="app_name">Aplikacja Żywieniowa</string>
 
 
-
     <string name="label_emailpassword">Email/Password Authentication</string>
     <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
-
 
 
     <string name="label_firebase_ui">FirebaseUI Auth</string>
@@ -28,7 +26,6 @@
     <string name="auth_failed">Uwierzytelnienie nie powiodło się</string>
 
 
-
     <string name="hint_verification_code">Verification Code</string>
     <string name="status_code_sent">Code Sent</string>
     <string name="status_verification_failed">Verification failed</string>
@@ -41,7 +38,7 @@
 
 
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
-    <string name="emailpassword_title_text">Email i Hasło</string>
+    <string name="emailpassword_title_text">version 21.37</string>
 
 
     <string name="firebaseui_status_fmt">Firebase User: %s</string>
@@ -61,4 +58,5 @@
         <item>kobieta</item>
         <item>mężczyzna</item>
     </string-array>
+    <string name="title_activity_edit_profile">EditProfile</string>
 </resources>

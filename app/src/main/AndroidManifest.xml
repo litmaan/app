@@ -19,13 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".Goal"
             android:label="@string/title_activity_goal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditOrDelete" />
+        <activity android:name=".DeleteActivity" />
+        <activity android:name=".EditActivity" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".AddProductToDatabase" />
+        <activity android:name=".AddDailyProducts" />
+        <activity android:name=".AddDailyProductsFrom" />
+        <activity android:name=".SelectDate"></activity>
     </application>
 
 </manifest>

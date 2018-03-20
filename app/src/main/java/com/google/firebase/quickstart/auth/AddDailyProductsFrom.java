@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class AddDailyProductsFrom extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     TextView productName;
 
     TextView productCarbs;
@@ -188,22 +190,27 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                         Produkt produkt = new Produkt(productResultAmount, productResultProtein, productResultCarbs, productResultFat, productResultKcal);
 
 
-                        if (myRef.child("lista").child(dateFormat) == null) {
+
+                        if(myRef.child("lista").child(mAuth.getCurrentUser().getUid()) == null){
+                            myRef.child("lista").setValue(mAuth.getCurrentUser().getUid());
+                        }
+
+                        if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat) == null) {
                             myRef.child("lista").setValue(dateFormat);
 
                         }
 
-                        if (myRef.child("lista").child(dateFormat).child(chooser) != null) {
-                            if (myRef.child("lista").child(dateFormat).child(chooser).child(name) != null) {
-                                myRef.child("lista").child(dateFormat).child(chooser).child(name).setValue(produkt);
+                        if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser) != null) {
+                            if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name) != null) {
+                                myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
                                 Toast.makeText(AddDailyProductsFrom.this, "Dodano", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddDailyProductsFrom.this, EditOrDelete.class);
                                 startActivity(intent);
                             }
                         } else {
-                            myRef.child("lista").child(dateFormat).setValue(chooser);
-                            myRef.child("lista").child(dateFormat).child(chooser).setValue(name);
-                            myRef.child("lista").child(dateFormat).child(chooser).child(name).setValue(produkt);
+                            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
+                            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
+                            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
                             Toast.makeText(AddDailyProductsFrom.this, "Dodano", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(AddDailyProductsFrom.this, EditOrDelete.class);
                             startActivity(intent);

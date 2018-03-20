@@ -196,17 +196,17 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                         }
 
                         if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat) == null) {
-                            myRef.child("lista").setValue(dateFormat);
+                            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).setValue(dateFormat);
 
                         }
 
                         if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser) != null) {
-                            if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name) != null) {
+                           
                                 myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
                                 Toast.makeText(AddDailyProductsFrom.this, "Dodano", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddDailyProductsFrom.this, EditOrDelete.class);
                                 startActivity(intent);
-                            }
+
                         } else {
                             myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
                             myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);

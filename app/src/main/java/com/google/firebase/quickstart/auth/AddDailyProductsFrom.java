@@ -62,6 +62,8 @@ public class AddDailyProductsFrom extends AppCompatActivity {
     String chooser;
 
     public String dateFormat;
+    public String name;
+    public Map<String, String> map = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,47 +97,11 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
         productName.setText(name);
 
-        Map<String, String> map = new HashMap<>();
-        myRef.child("produkty").child(name).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    map.put(noteDataSnapshot.getKey(), String.valueOf(noteDataSnapshot.getValue()));
-                }
-                for (Map.Entry<String, String> entry : map.entrySet()) {
-                    if (entry.getKey().equals("carbs")) {
-                        productCarbsTemp = Double.valueOf(entry.getValue());
-                        productCarbs.setText(entry.getValue());
-                    }
-                    if (entry.getKey().equals("fat")) {
-                        productFatTemp = Double.valueOf(entry.getValue());
-                        productFat.setText(entry.getValue());
 
-                    }
-
-                    if (entry.getKey().equals("kcal")) {
-                        productKcalTemp = Double.valueOf(entry.getValue());
-                        productKcal.setText(entry.getValue());
-
-                    }
-                    if (entry.getKey().equals("protein")) {
-                        productProteinTemp = Double.valueOf(entry.getValue());
-                        productProtein.setText(entry.getValue());
-
-                    }
-                    System.out.println(entry.getKey() + " ----- " + entry.getValue());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
+        getFromDatabase();
         productAmount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -201,7 +167,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                         }
 
                         if (myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser) != null) {
-                           
+
                                 myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
                                 Toast.makeText(AddDailyProductsFrom.this, "Dodano", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(AddDailyProductsFrom.this, EditOrDelete.class);
@@ -261,5 +227,43 @@ public class AddDailyProductsFrom extends AppCompatActivity {
             }
         }
     };
+public void getFromDatabase(){
+    myRef.child("produkty").child(name).addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                map.put(noteDataSnapshot.getKey(), String.valueOf(noteDataSnapshot.getValue()));
+            }
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                if (entry.getKey().equals("carbs")) {
+                    productCarbsTemp = Double.valueOf(entry.getValue());
+                    productCarbs.setText(entry.getValue());
+                }
+                if (entry.getKey().equals("fat")) {
+                    productFatTemp = Double.valueOf(entry.getValue());
+                    productFat.setText(entry.getValue());
 
+                }
+
+                if (entry.getKey().equals("kcal")) {
+                    productKcalTemp = Double.valueOf(entry.getValue());
+                    productKcal.setText(entry.getValue());
+
+                }
+                if (entry.getKey().equals("protein")) {
+                    productProteinTemp = Double.valueOf(entry.getValue());
+                    productProtein.setText(entry.getValue());
+
+                }
+                System.out.println(entry.getKey() + " ----- " + entry.getValue());
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+
+    });
+}
 }

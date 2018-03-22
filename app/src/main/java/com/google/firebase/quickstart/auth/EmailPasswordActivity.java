@@ -153,7 +153,7 @@ public class EmailPasswordActivity extends BaseActivity implements
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                            Intent intent = new Intent(EmailPasswordActivity.this,EditOrDelete.class);
+                            Intent intent = new Intent(EmailPasswordActivity.this,UserProfile.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.

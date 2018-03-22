@@ -147,6 +147,7 @@
     <orderEntry type="library" name="com.google.firebase:firebase-common-license-11.8.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-core-11.8.0" level="project" />
     <orderEntry type="library" name="com.twitter:twitter-text:1.14.7@jar" level="project" />
+    <orderEntry type="library" name="com.baoyz.pullrefreshlayout:library-1.2.0" level="project" />
     <orderEntry type="library" name="com.google.zxing:core:3.3.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.squareup.picasso:picasso:2.5.2@jar" level="project" />

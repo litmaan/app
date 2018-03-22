@@ -60,75 +60,8 @@ public class EditActivity extends AppCompatActivity {
         curId = myAtuh.getUid();
         System.out.println("id zalogowany " + curId);
 
-        myRef.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Map<String, CurrentUser> map = new HashMap<>();
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-
-                    CurrentUser currentUser = new CurrentUser(noteDataSnapshot.getValue(CurrentUser.class).getWiek(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getWaga(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getWzrost(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getActivity(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getSex());
-
-                    map.put(noteDataSnapshot.getKey(), currentUser);
-
-
-                }
-
-
-                for (Map.Entry<String, CurrentUser> entry : map.entrySet()) {
-                    if (entry.getKey().equals(curId)) {
-
-                        age.setText(entry.getValue().getWiek());
-                        weight.setText(entry.getValue().getWaga());
-                        height.setText(entry.getValue().getWzrost());
-                        switch (entry.getValue().getActivity()) {
-                            case "niska":
-                                activity.setSelection(0);
-                                break;
-                            case "średnia":
-                                activity.setSelection(1);
-                                break;
-                            case "wysoka":
-                                activity.setSelection(2);
-                                break;
-                            case "bardzo wysoka":
-                                activity.setSelection(3);
-                                break;
-                            default:
-                                System.out.println("NULL");
-                                break;
-                        }
-                        switch (entry.getValue().getSex()) {
-                            case "kobieta":
-                                sex.setSelection(0);
-                                break;
-                            case "mężczyzna":
-                                sex.setSelection(1);
-                                break;
-
-                            default:
-                                System.out.println("NULL");
-                                break;
-                        }
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("-------------------");
-                System.out.println("DATABASE ERROR");
-                System.out.println("-------------------");
-
-            }
-
-        });
-
+getFromDatabase();
 
     }
 
@@ -180,7 +113,76 @@ public class EditActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    ;
 
+public void getFromDatabase(){
+    myRef.child("users").addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+
+            Map<String, CurrentUser> map = new HashMap<>();
+            for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+
+                CurrentUser currentUser = new CurrentUser(noteDataSnapshot.getValue(CurrentUser.class).getWiek(),
+                        noteDataSnapshot.getValue(CurrentUser.class).getWaga(),
+                        noteDataSnapshot.getValue(CurrentUser.class).getWzrost(),
+                        noteDataSnapshot.getValue(CurrentUser.class).getActivity(),
+                        noteDataSnapshot.getValue(CurrentUser.class).getSex());
+
+                map.put(noteDataSnapshot.getKey(), currentUser);
+
+
+            }
+
+
+            for (Map.Entry<String, CurrentUser> entry : map.entrySet()) {
+                if (entry.getKey().equals(curId)) {
+
+                    age.setText(entry.getValue().getWiek());
+                    weight.setText(entry.getValue().getWaga());
+                    height.setText(entry.getValue().getWzrost());
+                    switch (entry.getValue().getActivity()) {
+                        case "niska":
+                            activity.setSelection(0);
+                            break;
+                        case "średnia":
+                            activity.setSelection(1);
+                            break;
+                        case "wysoka":
+                            activity.setSelection(2);
+                            break;
+                        case "bardzo wysoka":
+                            activity.setSelection(3);
+                            break;
+                        default:
+                            System.out.println("NULL");
+                            break;
+                    }
+                    switch (entry.getValue().getSex()) {
+                        case "kobieta":
+                            sex.setSelection(0);
+                            break;
+                        case "mężczyzna":
+                            sex.setSelection(1);
+                            break;
+
+                        default:
+                            System.out.println("NULL");
+                            break;
+                    }
+
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+            System.out.println("-------------------");
+            System.out.println("DATABASE ERROR");
+            System.out.println("-------------------");
+
+        }
+
+    });
+}
 
 }

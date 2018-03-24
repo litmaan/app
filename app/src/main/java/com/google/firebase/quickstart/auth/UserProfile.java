@@ -15,6 +15,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -22,9 +27,16 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserProfile extends AppCompatActivity {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    DatabaseReference myRef = database.getReference();
  public FirebaseAuth mAuth = FirebaseAuth.getInstance();
     Toolbar myToolbar;
+    CurrentUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +44,48 @@ public class UserProfile extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(myToolbar);
        createDrawer();
+
+    String curId = mAuth.getUid();
+
+
+        myRef.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, CurrentUser> map = new HashMap<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+
+                    CurrentUser currentUser = new CurrentUser(noteDataSnapshot.getValue(CurrentUser.class).getWiek(),
+                            noteDataSnapshot.getValue(CurrentUser.class).getWaga(),
+                            noteDataSnapshot.getValue(CurrentUser.class).getWzrost(),
+                            noteDataSnapshot.getValue(CurrentUser.class).getActivity(),
+                            noteDataSnapshot.getValue(CurrentUser.class).getSex(),
+                            noteDataSnapshot.getValue(CurrentUser.class).getGoal());
+
+                    map.put(noteDataSnapshot.getKey(), currentUser);
+
+
+                }
+
+                for (Map.Entry<String, CurrentUser> entry : map.entrySet()) {
+                    if (entry.getKey().equals(curId)) {
+                       user = new CurrentUser(entry.getValue().getWiek(),entry.getValue().getWaga(),entry.getValue().getWzrost(),
+                                entry.getValue().getActivity(),entry.getValue().getSex(),entry.getValue().getGoal());
+
+                    }
+                }
+                UserBmi bmi = new UserBmi();
+                user = bmi.calculateBmi(user);
+                System.out.println("----------------------------------- " + user.getActivity() +user.getWiek()+user.getWaga()+user.getWzrost()+user.getActivity()+user.getSex()+user.getuId()+user.getBmi());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
 
         }
@@ -81,9 +135,10 @@ public class UserProfile extends AppCompatActivity {
 
                 .addDrawerItems(new PrimaryDrawerItem().withIdentifier(1).withName("Menu"),
                         new SecondaryDrawerItem().withIdentifier(2).withName("Profil"),
-                        new SecondaryDrawerItem().withIdentifier(3).withName("Dodaj produkt do bazy"),
-                        new SecondaryDrawerItem().withIdentifier(4).withName("Dodaj produkt do dziennej listy"),
-                        new SecondaryDrawerItem().withIdentifier(5).withName("Pokaż produkty dodane do dziennej listy")
+                        new SecondaryDrawerItem().withIdentifier(3).withName("Edytuj Profil"),
+                        new SecondaryDrawerItem().withIdentifier(4).withName("Dodaj produkt do bazy"),
+                        new SecondaryDrawerItem().withIdentifier(5).withName("Dodaj produkt do dziennej listy"),
+                        new SecondaryDrawerItem().withIdentifier(6).withName("Pokaż produkty dodane do dziennej listy")
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -96,15 +151,19 @@ public class UserProfile extends AppCompatActivity {
                             case 1:
 
                                 break;
-                            case 2:
+                                case 2:
+                                    intent = new Intent(UserProfile.this,EditActivity.class);
+                                    startActivity(intent);
+                                break;
+                            case 3:
                                 intent = new Intent(UserProfile.this,AddProductToDatabase.class);
                                 startActivity(intent);
                                 break;
-                            case 3:
+                            case 4:
                                 intent = new Intent(UserProfile.this,AddDailyProducts.class);
                                 startActivity(intent);
                                 break;
-                            case 4:
+                            case 5:
                                 break;
                             default:
                                 break;

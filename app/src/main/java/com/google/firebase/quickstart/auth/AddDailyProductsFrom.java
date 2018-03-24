@@ -324,9 +324,10 @@ public void getFromDatabase(){
 
                 .addDrawerItems(new PrimaryDrawerItem().withIdentifier(1).withName("Menu"),
                         new SecondaryDrawerItem().withIdentifier(2).withName("Profil"),
-                        new SecondaryDrawerItem().withIdentifier(3).withName("Dodaj produkt do bazy"),
-                        new SecondaryDrawerItem().withIdentifier(4).withName("Dodaj produkt do dziennej listy"),
-                        new SecondaryDrawerItem().withIdentifier(5).withName("Pokaż produkty dodane do dziennej listy")
+                        new SecondaryDrawerItem().withIdentifier(3).withName("Edytuj Profil"),
+                        new SecondaryDrawerItem().withIdentifier(4).withName("Dodaj produkt do bazy"),
+                        new SecondaryDrawerItem().withIdentifier(5).withName("Dodaj produkt do dziennej listy"),
+                        new SecondaryDrawerItem().withIdentifier(6).withName("Pokaż produkty dodane do dziennej listy")
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -340,15 +341,19 @@ public void getFromDatabase(){
                                 intent = new Intent(AddDailyProductsFrom.this,UserProfile.class);
                                 startActivity(intent);
                                 break;
-                            case 2:
-                                intent = new Intent(AddDailyProductsFrom.this,AddProductToDatabase.class);
+                                case 2:
+                                intent = new Intent(AddDailyProductsFrom.this,EditActivity.class);
                                 startActivity(intent);
                                 break;
                             case 3:
-                                intent = new Intent(AddDailyProductsFrom.this,AddDailyProducts.class);
+                                intent = new Intent(AddDailyProductsFrom.this,AddProductToDatabase.class);
                                 startActivity(intent);
                                 break;
                             case 4:
+                                intent = new Intent(AddDailyProductsFrom.this,AddDailyProducts.class);
+                                startActivity(intent);
+                                break;
+                            case 5:
                                 break;
                             default:
                                 break;

@@ -44,6 +44,7 @@ public class EditActivity extends AppCompatActivity {
     public EditText height;
     public Spinner activity;
     public Spinner sex;
+    public Spinner goal;
 
     public Button sendToDatabase;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -67,7 +68,7 @@ public class EditActivity extends AppCompatActivity {
         height = (EditText) findViewById(R.id.textEditHeight);
         activity = (Spinner) findViewById(R.id.spinnerActivityLevel);
         sex = (Spinner) findViewById(R.id.spinnerSex);
-
+        goal = (Spinner) findViewById(R.id.spinnerGoal);
         curId = myAtuh.getUid();
         System.out.println("id zalogowany " + curId);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -105,7 +106,7 @@ getFromDatabase();
                 Toast.makeText(EditActivity.this, "Podany wzrost jest za duży", Toast.LENGTH_SHORT).show();
             } else {
                 CurrentUser user = new CurrentUser(age.getText().toString(), weight.getText().toString(),
-                        height.getText().toString(), activity.getSelectedItem().toString(), sex.getSelectedItem().toString());
+                        height.getText().toString(), activity.getSelectedItem().toString(), sex.getSelectedItem().toString(),goal.getSelectedItem().toString());
                 RealtimeDatabase rd = new RealtimeDatabase();
                 rd.setValue(user);
                 Toast.makeText(EditActivity.this, "Wysłano", Toast.LENGTH_LONG).show();
@@ -140,7 +141,8 @@ public void getFromDatabase(){
                         noteDataSnapshot.getValue(CurrentUser.class).getWaga(),
                         noteDataSnapshot.getValue(CurrentUser.class).getWzrost(),
                         noteDataSnapshot.getValue(CurrentUser.class).getActivity(),
-                        noteDataSnapshot.getValue(CurrentUser.class).getSex());
+                        noteDataSnapshot.getValue(CurrentUser.class).getSex(),
+                        noteDataSnapshot.getValue(CurrentUser.class).getGoal());
 
                 map.put(noteDataSnapshot.getKey(), currentUser);
 
@@ -179,6 +181,20 @@ public void getFromDatabase(){
                             sex.setSelection(1);
                             break;
 
+                        default:
+                            System.out.println("NULL");
+                            break;
+                    }
+                    switch(entry.getValue().getGoal()){
+                        case "schudnąć":
+                            goal.setSelection(0);
+                            break;
+                        case "utrzymać wagę":
+                            goal.setSelection(1);
+                            break;
+                        case "przybrać na wadze":
+                            goal.setSelection(2);
+                            break;
                         default:
                             System.out.println("NULL");
                             break;

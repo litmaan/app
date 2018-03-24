@@ -38,6 +38,7 @@ public class Goal extends AppCompatActivity {
     public EditText height;
     public Spinner activity;
     public Spinner sex;
+    public Spinner goal;
     public Button sendToDatabaseBtn;
     public Button sendToDatabase;
     private FirebaseDatabase mFirebaseDatabase;
@@ -56,7 +57,7 @@ public class Goal extends AppCompatActivity {
         height = (EditText) findViewById(R.id.textEditHeight);
         activity = (Spinner) findViewById(R.id.spinnerActivityLevel);
         sex = (Spinner) findViewById(R.id.spinnerSex);
-
+        goal = (Spinner)findViewById(R.id.spinnerGoal);
     }
 
 
@@ -86,7 +87,7 @@ public class Goal extends AppCompatActivity {
                 Toast.makeText(Goal.this, "Podany wzrost jest za duży", Toast.LENGTH_SHORT).show();
             } else {
                 CurrentUser user = new CurrentUser(age.getText().toString(), weight.getText().toString(),
-                        height.getText().toString(), activity.getSelectedItem().toString(), sex.getSelectedItem().toString());
+                        height.getText().toString(), activity.getSelectedItem().toString(), sex.getSelectedItem().toString(),goal.getSelectedItem().toString());
                 RealtimeDatabase rd = new RealtimeDatabase();
                 rd.setValue(user);
                 Toast.makeText(Goal.this, "Wysłano", Toast.LENGTH_LONG).show();

@@ -107,8 +107,11 @@ getFromDatabase();
             } else {
                 CurrentUser user = new CurrentUser(age.getText().toString(), weight.getText().toString(),
                         height.getText().toString(), activity.getSelectedItem().toString(), sex.getSelectedItem().toString(),goal.getSelectedItem().toString());
+                UserBmi bmi = new UserBmi();
+                user = bmi.calculateBmi(user);
+                UserMacro macro = bmi.calculateMacro(user);
                 RealtimeDatabase rd = new RealtimeDatabase();
-                rd.setValue(user);
+                rd.setValue(user,macro);
                 Toast.makeText(EditActivity.this, "Wysłano", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(EditActivity.this, EditOrDelete.class);
                 startActivity(intent);

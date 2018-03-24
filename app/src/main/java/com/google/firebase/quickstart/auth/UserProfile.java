@@ -35,6 +35,7 @@ public class UserProfile extends AppCompatActivity {
 
     DatabaseReference myRef = database.getReference();
  public FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     Toolbar myToolbar;
     CurrentUser user;
     @Override
@@ -48,42 +49,6 @@ public class UserProfile extends AppCompatActivity {
     String curId = mAuth.getUid();
 
 
-        myRef.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, CurrentUser> map = new HashMap<>();
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-
-                    CurrentUser currentUser = new CurrentUser(noteDataSnapshot.getValue(CurrentUser.class).getWiek(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getWaga(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getWzrost(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getActivity(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getSex(),
-                            noteDataSnapshot.getValue(CurrentUser.class).getGoal());
-
-                    map.put(noteDataSnapshot.getKey(), currentUser);
-
-
-                }
-
-                for (Map.Entry<String, CurrentUser> entry : map.entrySet()) {
-                    if (entry.getKey().equals(curId)) {
-                       user = new CurrentUser(entry.getValue().getWiek(),entry.getValue().getWaga(),entry.getValue().getWzrost(),
-                                entry.getValue().getActivity(),entry.getValue().getSex(),entry.getValue().getGoal());
-
-                    }
-                }
-                UserBmi bmi = new UserBmi();
-                user = bmi.calculateBmi(user);
-                System.out.println("----------------------------------- " + user.getActivity() +user.getWiek()+user.getWaga()+user.getWzrost()+user.getActivity()+user.getSex()+user.getuId()+user.getBmi());
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
 

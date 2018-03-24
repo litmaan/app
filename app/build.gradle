@@ -45,6 +45,15 @@ dependencies {
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.google.gms:google-services:3.1.0'
     compile 'com.android.support:appcompat-v7:26.1.0'
+
+    implementation("com.mikepenz:materialdrawer:6.0.6@aar") {
+        transitive = true
+    }
+    implementation "com.android.support:appcompat-v7"
+    implementation "com.android.support:recyclerview-v7"
+    implementation "com.android.support:support-annotations"
+    implementation "com.android.support:design"
+    
     // Firebase Authentication
     compile 'com.google.firebase:firebase-auth:11.8.0'
     // Google Sign In SDK (only required for Google Sign In)
@@ -66,6 +75,7 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestCompile 'com.android.support.test:runner:1.0.1'
 }
+
 
 apply plugin: 'com.google.gms.google-services'
 

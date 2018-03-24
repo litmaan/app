@@ -90,7 +90,7 @@ public class Goal extends AppCompatActivity {
                 RealtimeDatabase rd = new RealtimeDatabase();
                 rd.setValue(user);
                 Toast.makeText(Goal.this, "Wysłano", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Goal.this, EditOrDelete.class);
+                Intent intent = new Intent(Goal.this, UserProfile.class);
                 startActivity(intent);
             }
         }

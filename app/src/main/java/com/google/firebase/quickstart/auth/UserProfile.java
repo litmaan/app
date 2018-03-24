@@ -1,5 +1,6 @@
 package com.google.firebase.quickstart.auth;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.usb.UsbRequest;
@@ -10,19 +11,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class UserProfile extends AppCompatActivity {
  public FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
+    Toolbar myToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(myToolbar);
+       createDrawer();
+
 
         }
     @Override
@@ -61,5 +71,48 @@ public class UserProfile extends AppCompatActivity {
 
         return false;
     }
+    public void createDrawer() {
 
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .withDrawerLayout(R.layout.drawer_layout)
+
+                .addDrawerItems(new PrimaryDrawerItem().withIdentifier(1).withName("Menu"),
+                        new SecondaryDrawerItem().withIdentifier(2).withName("Profil"),
+                        new SecondaryDrawerItem().withIdentifier(3).withName("Dodaj produkt do bazy"),
+                        new SecondaryDrawerItem().withIdentifier(4).withName("Dodaj produkt do dziennej listy"),
+                        new SecondaryDrawerItem().withIdentifier(5).withName("Pokaż produkty dodane do dziennej listy")
+
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Intent intent;
+                        switch (position) {
+                            case 0:
+                                break;
+                            case 1:
+
+                                break;
+                            case 2:
+                                intent = new Intent(UserProfile.this,AddProductToDatabase.class);
+                                startActivity(intent);
+                                break;
+                            case 3:
+                                intent = new Intent(UserProfile.this,AddDailyProducts.class);
+                                startActivity(intent);
+                                break;
+                            case 4:
+                                break;
+                            default:
+                                break;
+                        }
+                        return true;
+                    }
+                }).build();
+
+
+    }
 }

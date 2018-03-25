@@ -45,7 +45,7 @@ dependencies {
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.google.gms:google-services:3.1.0'
     compile 'com.android.support:appcompat-v7:26.1.0'
-
+    compile 'com.mikhaellopez:circularprogressbar:1.1.1'
     implementation("com.mikepenz:materialdrawer:6.0.6@aar") {
         transitive = true
     }

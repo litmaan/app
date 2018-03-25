@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.usb.UsbRequest;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +50,24 @@ public class UserProfile extends AppCompatActivity {
 
     String curId = mAuth.getUid();
 
+        myRef.child("users").child(curId).child("macro").child("kcal").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String kcal = String.valueOf(dataSnapshot.getValue());
 
+                CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.bar);
+                circularProgressBar.setColor(ContextCompat.getColor(UserProfile.this, R.color.accent));
+                circularProgressBar.setBackgroundColor(ContextCompat.getColor(UserProfile.this, R.color.cardview_dark_background));
+                circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.cardview_compat_inset_shadow));
+                circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.activity_horizontal_margin));
+                circularProgressBar.setProgress((float) 50.0);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 

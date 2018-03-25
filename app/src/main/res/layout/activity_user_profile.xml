@@ -6,15 +6,31 @@
     android:layout_height="match_parent"
     tools:context="com.google.firebase.quickstart.auth.UserProfile">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:theme="@style/AppTheme"
-        app:popupTheme="@style/AppTheme">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
 
-    </android.support.v7.widget.Toolbar>
+            android:theme="@style/AppTheme"
+            app:popupTheme="@style/AppTheme">
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cpb_background_progressbar_color="#FFCDD2"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_progressbar_color="#F44336"
+            app:cpb_progressbar_width="10dp"
+            android:id="@+id/bar"/>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

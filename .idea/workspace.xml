@@ -25,11 +25,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/CurrentUser.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/CurrentUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserBmi.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserBmi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserMacro.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserMacro.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_profile.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_profile.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,18 +70,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddDailyProductsFrom.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AddDailyProductsFrom.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="29" />
+            <state relative-caret-position="-318">
+              <caret line="128" column="19" lean-forward="false" selection-start-line="128" selection-start-column="19" selection-end-line="128" selection-end-column="19" />
               <folding>
-                <element signature="class#8136:9230" expanded="false" />
-                <element signature="method#onDataChange#0;class#8136:9230" expanded="false" />
-                <element signature="method#onCancelled#0;class#8136:9230" expanded="false" />
-                <element signature="class#9376:10263" expanded="false" />
-                <element signature="class#10421:11691" expanded="false" />
-                <element signature="class#11836:12469" expanded="false" />
+                <element signature="class#8249:9343" expanded="false" />
+                <element signature="method#onDataChange#0;class#8249:9343" expanded="false" />
+                <element signature="method#onCancelled#0;class#8249:9343" expanded="false" />
+                <element signature="class#9489:10376" expanded="false" />
+                <element signature="class#10534:11804" expanded="false" />
                 <element signature="method#setKcal#0;class#AddDailyProductsFrom#0" expanded="false" />
                 <element signature="method#getFromDatabase#0;class#AddDailyProductsFrom#0" expanded="false" />
                 <element signature="method#onCreateOptionsMenu#0;class#AddDailyProductsFrom#0" expanded="false" />
@@ -94,15 +91,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserProfile.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserProfile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="132" column="123" lean-forward="false" selection-start-line="132" selection-start-column="123" selection-end-line="132" selection-end-column="123" />
+            <state relative-caret-position="287">
+              <caret line="69" column="8" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="72" selection-end-column="51" />
               <folding>
                 <element signature="class#3378:4867" expanded="false" />
                 <element signature="method#onOptionsItemSelected#0;class#UserProfile#0" expanded="false" />
                 <element signature="method#createDrawer#0;class#UserProfile#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Goal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1952,16 +1961,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/DeleteActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/EditActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/RealtimeDatabase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Produkt.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/DailyProductsDatabase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/CurrentUser.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserBmi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserMacro.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java" />
       </list>
     </option>
   </component>
@@ -2306,7 +2315,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="Nexus_5X_API_26" />
+    <property name="device.picker.selection" value="FFYDU17A19019446" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="android.profiler.active" value="true" />
   </component>
@@ -2377,7 +2386,7 @@
       <option name="ACTIVITY_CLASS" value="com.google.firebase.quickstart.auth.AddDailyProductsFrom" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522011783721" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522013108519" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -2450,7 +2459,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522011783721" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522013108519" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2498,7 +2507,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522011783721" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522013108520" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2681,7 +2690,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522011783723" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522013108522" />
       </method>
     </configuration>
     <configuration default="false" name="app-app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -2730,7 +2739,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522011783723" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1522013108523" />
       </method>
     </configuration>
     <list size="3">
@@ -3282,16 +3291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="98" column="24" lean-forward="false" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProducts.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31">
@@ -3347,6 +3346,28 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddProductToDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-318">
+          <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#AddProductToDatabase#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#AddProductToDatabase#0" expanded="false" />
+            <element signature="method#createDrawer#0;class#AddProductToDatabase#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserBmi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserMacro.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -3376,22 +3397,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddProductToDatabase.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+        <state relative-caret-position="287">
+          <caret line="69" column="8" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="72" selection-end-column="51" />
           <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#AddProductToDatabase#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#AddProductToDatabase#0" expanded="false" />
-            <element signature="method#createDrawer#0;class#AddProductToDatabase#0" expanded="false" />
+            <element signature="class#3378:4867" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#UserProfile#0" expanded="false" />
+            <element signature="method#createDrawer#0;class#UserProfile#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserBmi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/Goal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="80">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3400,32 +3421,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/AddDailyProductsFrom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="29" />
+        <state relative-caret-position="-318">
+          <caret line="128" column="19" lean-forward="false" selection-start-line="128" selection-start-column="19" selection-end-line="128" selection-end-column="19" />
           <folding>
-            <element signature="class#8136:9230" expanded="false" />
-            <element signature="method#onDataChange#0;class#8136:9230" expanded="false" />
-            <element signature="method#onCancelled#0;class#8136:9230" expanded="false" />
-            <element signature="class#9376:10263" expanded="false" />
-            <element signature="class#10421:11691" expanded="false" />
-            <element signature="class#11836:12469" expanded="false" />
+            <element signature="class#8249:9343" expanded="false" />
+            <element signature="method#onDataChange#0;class#8249:9343" expanded="false" />
+            <element signature="method#onCancelled#0;class#8249:9343" expanded="false" />
+            <element signature="class#9489:10376" expanded="false" />
+            <element signature="class#10534:11804" expanded="false" />
             <element signature="method#setKcal#0;class#AddDailyProductsFrom#0" expanded="false" />
             <element signature="method#getFromDatabase#0;class#AddDailyProductsFrom#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#AddDailyProductsFrom#0" expanded="false" />
             <element signature="method#onOptionsItemSelected#0;class#AddDailyProductsFrom#0" expanded="false" />
             <element signature="method#createDrawer#0;class#AddDailyProductsFrom#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/google/firebase/quickstart/auth/UserProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="132" column="123" lean-forward="false" selection-start-line="132" selection-start-column="123" selection-end-line="132" selection-end-column="123" />
-          <folding>
-            <element signature="class#3378:4867" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#UserProfile#0" expanded="false" />
-            <element signature="method#createDrawer#0;class#UserProfile#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -29,6 +29,8 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -73,6 +75,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
     public String name;
     public Map<String, String> map = new HashMap<>();
     public DatabaseReference kcalRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat = simpleDateFormat.format(date);
-         kcalRef = myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal");
+        kcalRef = myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal");
 
         dodajBtn = (Button) findViewById(R.id.dodajBtn);
 
@@ -123,15 +126,15 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                     if (productAmount.getText().toString().isEmpty()) {
                         productAmount.setText("100");
                     }
-                    productAmountTemp = Double.valueOf(productAmount.getText().toString()) / 100;
+                   
 
-                    DecimalFormat decimalFormat = new DecimalFormat(".##");
 
-                    productResultAmount = Double.valueOf(decimalFormat.format(productAmountTemp));
-                    productResultCarbs = Double.valueOf(decimalFormat.format(productCarbsTemp * productAmountTemp));
-                    productResultFat = Double.valueOf(decimalFormat.format(productFatTemp * productAmountTemp));
-                    productResultProtein = Double.valueOf(decimalFormat.format(productProteinTemp * productAmountTemp));
-                    productResultKcal = Double.valueOf(decimalFormat.format(productKcalTemp * productAmountTemp));
+
+                    productResultAmount =productAmountTemp;
+                    productResultCarbs = productCarbsTemp * productAmountTemp;
+                    productResultFat = productFatTemp * productAmountTemp;
+                    productResultProtein =productProteinTemp * productAmountTemp;
+                    productResultKcal = productKcalTemp * productAmountTemp;
 
                     productCarbs.setText(String.valueOf(productResultCarbs));
                     productFat.setText(String.valueOf(productResultFat));
@@ -153,13 +156,20 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                     if (sniadanie.isChecked() || obiad.isChecked() || kolacja.isChecked() || przekaski.isChecked()) {
                         productAmountTemp = Double.valueOf(productAmount.getText().toString()) / 100;
 
-                        DecimalFormat decimalFormat = new DecimalFormat(".##");
 
-                        productResultAmount = Double.valueOf(decimalFormat.format(productAmountTemp));
-                        productResultCarbs = Double.valueOf(decimalFormat.format(productCarbsTemp * productAmountTemp));
-                        productResultFat = Double.valueOf(decimalFormat.format(productFatTemp * productAmountTemp));
-                        productResultProtein = Double.valueOf(decimalFormat.format(productProteinTemp * productAmountTemp));
-                        productResultKcal = Double.valueOf(decimalFormat.format(productKcalTemp * productAmountTemp));
+
+                        productResultAmount = productAmountTemp;
+                        productResultCarbs = productCarbsTemp * productAmountTemp;
+                        productResultFat = productFatTemp * productAmountTemp;
+                        productResultProtein = productProteinTemp * productAmountTemp;
+                        productResultKcal = productKcalTemp * productAmountTemp;
+
+
+                        productResultAmount = BigDecimal.valueOf(productResultAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        productResultCarbs = BigDecimal.valueOf(productResultCarbs).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        productResultFat = BigDecimal.valueOf(productResultFat).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        productResultProtein = BigDecimal.valueOf(productResultProtein).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        productResultKcal = BigDecimal.valueOf(productResultKcal).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
 
                         Produkt produkt = new Produkt(productResultAmount, productResultProtein, productResultCarbs, productResultFat, productResultKcal);
@@ -258,8 +268,8 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
                         setKcal();
 
-                            Intent intent = new Intent(AddDailyProductsFrom.this,AddDailyProducts.class);
-                            startActivity(intent);
+                        Intent intent = new Intent(AddDailyProductsFrom.this, AddDailyProducts.class);
+                        startActivity(intent);
 
                     } else {
 
@@ -279,6 +289,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
         myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("sniadanie").addValueEventListener(new ValueEventListener() {
             Map<String, Double> map = new HashMap<>();
             double curKcal;
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {

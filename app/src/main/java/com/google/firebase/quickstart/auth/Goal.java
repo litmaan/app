@@ -24,7 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.twitter.Regex;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +34,7 @@ import java.util.regex.Pattern;
 public class Goal extends AppCompatActivity {
 
     public Button btn;
-    public FirebaseAuth mAuth;
+
     public EditText age;
     public EditText weight;
     public EditText height;
@@ -42,7 +44,10 @@ public class Goal extends AppCompatActivity {
     public Button sendToDatabaseBtn;
     public Button sendToDatabase;
     private FirebaseDatabase mFirebaseDatabase;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public String dateFormat;
+    DatabaseReference myRef = database.getReference();
+    public FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,10 @@ public class Goal extends AppCompatActivity {
         activity = (Spinner) findViewById(R.id.spinnerActivityLevel);
         sex = (Spinner) findViewById(R.id.spinnerSex);
         goal = (Spinner)findViewById(R.id.spinnerGoal);
+        Date date = new Date();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat = simpleDateFormat.format(date);
     }
 
 
@@ -75,6 +84,7 @@ public class Goal extends AppCompatActivity {
             String heightString = height.getText().toString();
             Matcher heightMatcher = pattern.matcher(heightString);
 
+            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").setValue(0.0);
             if (ageString.isEmpty() || weightString.isEmpty() || heightString.isEmpty()) {
                 Toast.makeText(Goal.this, "Wszystkie pola muszą być uzupełnione", Toast.LENGTH_SHORT).show();
             } else if (!ageMatcher.matches() || !weightMatcher.matches() || !heightMatcher.matches()) {

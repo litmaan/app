@@ -127,11 +127,17 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 curKcal.setText(String.valueOf(dataSnapshot.getValue()));
-                double curPom = Double.valueOf(String.valueOf(dataSnapshot.getValue()));
-
-
-                circularProgressBar.setProgress((float) ((float) curPom/Double.valueOf(allKcal.getText().toString())) * 100);
-
+                double curPom;
+                if((String.valueOf(dataSnapshot.getValue()).equals(null))){
+                    curPom = 0.0;
+                }else{
+                    curPom = Double.valueOf(String.valueOf(dataSnapshot.getValue()));
+                }
+                if(curPom == 0.0){
+                    circularProgressBar.setProgress(0);
+                }else {
+                    circularProgressBar.setProgress((float) ((float) curPom / Double.valueOf(allKcal.getText().toString())) * 100);
+                }
 
 
             }

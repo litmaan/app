@@ -5,48 +5,58 @@ package com.google.firebase.quickstart.auth;
  */
 
 public class UserMacro {
-    public double kcal;
-    public double protein;
-    public double carbs;
-    public double fat;
-    public UserMacro(double kcal, double protein, double carbs, double fat) {
-        this.kcal = kcal;
+    public String kcal;
+    public String protein;
+    public String carbs;
+    public String fat;
+    public String bmi;
 
+
+    public UserMacro(String kcal, String protein, String carbs, String fat, String bmi) {
+        this.kcal = kcal;
         this.protein = protein;
         this.carbs = carbs;
         this.fat = fat;
+        this.bmi = bmi;
     }
-    public double getKcal() {
+
+    public String getKcal() {
         return kcal;
     }
 
-    public void setKcal(double kcal) {
+    public void setKcal(String kcal) {
         this.kcal = kcal;
     }
 
-    public double getProtein() {
+    public String getProtein() {
         return protein;
     }
 
-    public void setProtein(double protein) {
+    public void setProtein(String protein) {
         this.protein = protein;
     }
 
-    public double getCarbs() {
+    public String getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(double carbs) {
+    public void setCarbs(String carbs) {
         this.carbs = carbs;
     }
 
-    public double getFat() {
+    public String getFat() {
         return fat;
     }
 
-    public void setFat(double fat) {
+    public void setFat(String fat) {
         this.fat = fat;
     }
 
+    public String getBmi() {
+        return bmi;
+    }
 
+    public void setBmi(String bmi) {
+        this.bmi = bmi;
+    }
 }

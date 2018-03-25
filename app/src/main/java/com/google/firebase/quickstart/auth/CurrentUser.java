@@ -15,7 +15,8 @@ public class CurrentUser {
     public String goal;
     public String uId;
 
-    public CurrentUser(String wiek, String waga, String wzrost, String activity, String sex,String goal, String uId, String bmi) {
+
+    public CurrentUser(String wiek, String waga, String wzrost, String activity, String sex,String goal, String uId ) {
         this.wiek = wiek;
         this.waga = waga;
         this.wzrost = wzrost;
@@ -23,7 +24,7 @@ public class CurrentUser {
         this.sex = sex;
         this.goal = goal;
         this.uId = uId;
-        this.bmi = bmi;
+
     }
 
 
@@ -58,15 +59,6 @@ public class CurrentUser {
         this.goal = goal;
     }
 
-    public String getBmi() {
-        return bmi;
-    }
-
-    public void setBmi(String bmi) {
-        this.bmi = bmi;
-    }
-
-    public String bmi;
 
 
     public String getActivity() {

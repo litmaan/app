@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,10 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,31 +41,99 @@ public class UserProfile extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     DatabaseReference myRef = database.getReference();
- public FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    public FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     Toolbar myToolbar;
     CurrentUser user;
+
+    TextView bmi;
+    TextView carbs;
+    TextView fat;
+    TextView allKcal;
+    TextView curKcal;
+    TextView protein;
+    public String dateFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
-      setSupportActionBar(myToolbar);
-       createDrawer();
+        setSupportActionBar(myToolbar);
+        createDrawer();
 
-    String curId = mAuth.getUid();
+        bmi = (TextView) findViewById(R.id.bmi);
+        carbs = (TextView) findViewById(R.id.carbs);
+        fat = (TextView) findViewById(R.id.fat);
+        protein = (TextView) findViewById(R.id.protein);
+        allKcal = (TextView) findViewById(R.id.allKcal);
+        curKcal = (TextView) findViewById(R.id.curKcal);
+        Date date = new Date();
 
-        myRef.child("users").child(curId).child("macro").child("kcal").addValueEventListener(new ValueEventListener() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat = simpleDateFormat.format(date);
+        String curId = mAuth.getUid();
+
+
+        CircularProgressBar circularProgressBar = (CircularProgressBar) findViewById(R.id.bar);
+        circularProgressBar.setColor(ContextCompat.getColor(UserProfile.this, R.color.accent));
+        circularProgressBar.setBackgroundColor(ContextCompat.getColor(UserProfile.this, R.color.cardview_dark_background));
+        circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.cardview_compat_inset_shadow));
+        circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.activity_horizontal_margin));
+        circularProgressBar.setProgress((float) 0);
+        myRef.child("users").child(mAuth.getUid()).child("macro").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String kcal = String.valueOf(dataSnapshot.getValue());
+                Map<String, String> map = new HashMap<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    map.put(noteDataSnapshot.getKey(), String.valueOf(noteDataSnapshot.getValue()));
 
-                CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.bar);
-                circularProgressBar.setColor(ContextCompat.getColor(UserProfile.this, R.color.accent));
-                circularProgressBar.setBackgroundColor(ContextCompat.getColor(UserProfile.this, R.color.cardview_dark_background));
-                circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.cardview_compat_inset_shadow));
-                circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.activity_horizontal_margin));
-                circularProgressBar.setProgress((float) 50.0);
+
+                }
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    System.out.println(entry.getValue() + " ------ " + entry.getKey());
+                    switch (entry.getKey()) {
+                        case "kcal":
+                            allKcal.setText(entry.getValue());
+                            break;
+                        case "carbs":
+                            carbs.setText(entry.getValue());
+
+                            break;
+                        case "protein":
+                            protein.setText(entry.getValue());
+
+                            break;
+                        case "fat":
+                            fat.setText(entry.getValue());
+
+                            break;
+                        case "bmi":
+                            bmi.setText(entry.getValue());
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("kcal").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                curKcal.setText(String.valueOf(dataSnapshot.getValue()));
+                double curPom = Double.valueOf(String.valueOf(dataSnapshot.getValue()));
+
+
+                circularProgressBar.setProgress((float) ((float) curPom/Double.valueOf(allKcal.getText().toString())) * 100);
+
+
+
             }
 
             @Override
@@ -69,30 +142,30 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
-        }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
         return true;
-        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.settings) {
-            Toast.makeText(UserProfile.this,"settings",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserProfile.this, "settings", Toast.LENGTH_SHORT).show();
             return true;
-        }if(item.getItemId() == R.id.logOut){
+        }
+        if (item.getItemId() == R.id.logOut) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Na pewno chcesz się wylogować?");
             builder.setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mAuth.signOut();
-                    Intent intent = new Intent(UserProfile.this,EmailPasswordActivity.class);
+                    Intent intent = new Intent(UserProfile.this, EmailPasswordActivity.class);
                     startActivity(intent);
                 }
             });
@@ -109,6 +182,7 @@ public class UserProfile extends AppCompatActivity {
 
         return false;
     }
+
     public void createDrawer() {
 
 
@@ -135,16 +209,16 @@ public class UserProfile extends AppCompatActivity {
                             case 1:
 
                                 break;
-                                case 2:
-                                    intent = new Intent(UserProfile.this,EditActivity.class);
-                                    startActivity(intent);
+                            case 2:
+                                intent = new Intent(UserProfile.this, EditActivity.class);
+                                startActivity(intent);
                                 break;
                             case 3:
-                                intent = new Intent(UserProfile.this,AddProductToDatabase.class);
+                                intent = new Intent(UserProfile.this, AddProductToDatabase.class);
                                 startActivity(intent);
                                 break;
                             case 4:
-                                intent = new Intent(UserProfile.this,AddDailyProducts.class);
+                                intent = new Intent(UserProfile.this, AddDailyProducts.class);
                                 startActivity(intent);
                                 break;
                             case 5:

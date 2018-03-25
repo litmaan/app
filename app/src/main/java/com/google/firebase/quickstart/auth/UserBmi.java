@@ -21,15 +21,15 @@ public class UserBmi {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String curId = mAuth.getUid();
     CurrentUser user;
-
+    public double bmi;
     public CurrentUser calculateBmi(CurrentUser user) {
-        double bmi = (Double.valueOf(user.getWaga()) * (Math.pow(Double.valueOf(user.getWzrost()), 2)));
-        CurrentUser resUser = new CurrentUser(user.getWiek(), user.getWaga(), user.getWzrost(), user.getActivity(), user.getSex(), user.getGoal(), String.valueOf(bmi), curId);
+        bmi = (Double.valueOf(user.getWaga()) / (Math.pow(Double.valueOf(user.getWzrost())/100, 2)));
+        System.out.println(" +++++++++++++++++++++++++++++++++ " + bmi);
+        CurrentUser resUser = new CurrentUser(user.getWiek(), user.getWaga(), user.getWzrost(), user.getActivity(), user.getSex(), user.getGoal(), curId);
 
         return resUser;
     }
 
-    ;
 
     public UserMacro calculateMacro(CurrentUser user) {
         double kcal = 0.0;
@@ -59,7 +59,7 @@ public class UserBmi {
         double protein =Math.round((kcal * 0.3) / 4);
         double carbs = Math.round((kcal * 0.4) / 4);
         double fat = Math.round((kcal * 0.3) / 9);
-       UserMacro macro = new UserMacro(kcal,protein,carbs,fat);
+       UserMacro macro = new UserMacro(String.valueOf(kcal),String.valueOf(protein),String.valueOf(carbs),String.valueOf(fat),String.valueOf(Math.round(bmi)));
         return macro;
     }
 }

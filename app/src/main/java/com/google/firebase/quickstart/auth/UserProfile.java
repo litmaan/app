@@ -3,6 +3,7 @@ package com.google.firebase.quickstart.auth;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.usb.UsbRequest;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,7 +55,22 @@ public class UserProfile extends AppCompatActivity {
     TextView curKcal;
     TextView protein;
     public String dateFormat;
+
+    public RoundCornerProgressBar proteinBar;
+    public RoundCornerProgressBar carbsBar;
+    public RoundCornerProgressBar fatBar;
+
+    public TextView proteinGoal;
+    public TextView carbsGoal;
+    public TextView fatGoal;
+
+    public TextView curProteinGoal;
+    public TextView curCarbsGoal;
+    public TextView curFatGoal;
+
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
@@ -73,13 +90,78 @@ public class UserProfile extends AppCompatActivity {
         dateFormat = simpleDateFormat.format(date);
         String curId = mAuth.getUid();
 
+        proteinGoal = (TextView) findViewById(R.id.proteinGoal);
+        carbsGoal = (TextView) findViewById(R.id.carbsGoal);
+        fatGoal = (TextView) findViewById(R.id.fatGoal);
 
+//        curProteinGoal = (TextView)findViewById(R.id.curProteinGoal);
+//        curCarbsGoal = (TextView)findViewById(R.id.curCarbsGoal);
+//        curFatGoal = (TextView)findViewById(R.id.curFatGoal);
+
+        proteinBar = (RoundCornerProgressBar) findViewById(R.id.proteinBar);
+        carbsBar = (RoundCornerProgressBar) findViewById(R.id.carbsBar);
+        fatBar = (RoundCornerProgressBar) findViewById(R.id.fatBar);
+
+        proteinBar.setProgressColor(Color.parseColor("#ed3b27"));
+        proteinBar.setProgressBackgroundColor(Color.parseColor("#808080"));
+        proteinBar.setMax(100);
+
+
+
+        carbsBar.setProgressColor(Color.parseColor("#ed3b27"));
+        carbsBar.setProgressBackgroundColor(Color.parseColor("#808080"));
+        carbsBar.setMax(100);
+
+
+        fatBar.setProgressColor(Color.parseColor("#ed3b27"));
+        fatBar.setProgressBackgroundColor(Color.parseColor("#808080"));
+        fatBar.setMax(100);
+
+
+
+
+
+
+        myRef.child("users").child(mAuth.getUid()).child("macro").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String> map = new HashMap<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    map.put(noteDataSnapshot.getKey(), String.valueOf(noteDataSnapshot.getValue()));
+                }
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    switch (entry.getKey()) {
+                        case "protein":
+                            proteinGoal.setText(entry.getValue());
+                            break;
+                        case "carbs":
+                            carbsGoal.setText(entry.getValue());
+                            break;
+                        case "fat":
+                            fatGoal.setText(entry.getValue());
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         CircularProgressBar circularProgressBar = (CircularProgressBar) findViewById(R.id.bar);
         circularProgressBar.setColor(ContextCompat.getColor(UserProfile.this, R.color.accent));
         circularProgressBar.setBackgroundColor(ContextCompat.getColor(UserProfile.this, R.color.cardview_dark_background));
         circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.cardview_compat_inset_shadow));
         circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.activity_horizontal_margin));
         circularProgressBar.setProgress((float) 0);
+
+
+
         myRef.child("users").child(mAuth.getUid()).child("macro").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -123,19 +205,58 @@ public class UserProfile extends AppCompatActivity {
 
             }
         });
+
+
+        myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("curMacro").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, String> map = new HashMap<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    map.put(noteDataSnapshot.getKey(), String.valueOf(noteDataSnapshot.getValue()));
+                }
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    switch (entry.getKey()) {
+                        case "protein":
+                            //curProteinGoal.setText(entry.getValue());
+                            double pomPro= (Double.valueOf(entry.getValue())/Double.valueOf(proteinGoal.getText().toString()))*100;
+                            proteinBar.setProgress(Math.round(pomPro));
+
+                            break;
+                        case "carbs":
+                           // curCarbsGoal.setText(entry.getValue());
+                            double pomCar = (Double.valueOf(entry.getValue())/Double.valueOf(carbsGoal.getText().toString()))*100;
+                            carbsBar.setProgress(Math.round(pomCar));
+                            break;
+                        case "fat":
+                           // curFatGoal.setText(entry.getValue());
+                            double pomFa = (Double.valueOf(entry.getValue())/Double.valueOf(fatGoal.getText().toString()))*100;
+                            fatBar.setProgress(Math.round(pomFa));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("kcal").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 curKcal.setText(String.valueOf(dataSnapshot.getValue()));
                 double curPom;
-                if((String.valueOf(dataSnapshot.getValue()).equals(null))){
+                if ((String.valueOf(dataSnapshot.getValue()).equals(null))) {
                     curPom = 0.0;
-                }else{
+                } else {
                     curPom = Double.valueOf(String.valueOf(dataSnapshot.getValue()));
                 }
-                if(curPom == 0.0){
+                if (curPom == 0.0) {
                     circularProgressBar.setProgress(0);
-                }else {
+                } else {
                     circularProgressBar.setProgress((float) ((float) curPom / Double.valueOf(allKcal.getText().toString())) * 100);
                 }
 

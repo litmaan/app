@@ -75,6 +75,9 @@ public class AddDailyProductsFrom extends AppCompatActivity {
     public String name;
     public Map<String, String> map = new HashMap<>();
     public DatabaseReference kcalRef;
+    public DatabaseReference macroRef;
+    public DatabaseReference testRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,11 @@ public class AddDailyProductsFrom extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat = simpleDateFormat.format(date);
         kcalRef = myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal");
-
+        macroRef = myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("curMacro");
+        testRef = myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("sniadanie");
+        testRef = myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("obiad");
+        testRef = myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("kolacja");
+        testRef = myRef.child("lista").child(mAuth.getUid()).child(dateFormat).child("przekaski");
         dodajBtn = (Button) findViewById(R.id.dodajBtn);
 
         productName = (TextView) findViewById(R.id.productName);
@@ -128,12 +135,10 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                     }
 
 
-
-
-                    productResultAmount =productAmountTemp;
+                    productResultAmount = productAmountTemp;
                     productResultCarbs = productCarbsTemp * productAmountTemp;
                     productResultFat = productFatTemp * productAmountTemp;
-                    productResultProtein =productProteinTemp * productAmountTemp;
+                    productResultProtein = productProteinTemp * productAmountTemp;
                     productResultKcal = productKcalTemp * productAmountTemp;
 
                     productCarbs.setText(String.valueOf(productResultCarbs));
@@ -157,7 +162,6 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                         productAmountTemp = Double.valueOf(productAmount.getText().toString()) / 100;
 
 
-
                         productResultAmount = productAmountTemp;
                         productResultCarbs = productCarbsTemp * productAmountTemp;
                         productResultFat = productFatTemp * productAmountTemp;
@@ -174,50 +178,50 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
                         Produkt produkt = new Produkt(productResultAmount, productResultProtein, productResultCarbs, productResultFat, productResultKcal);
 
-                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).setValue(dateFormat);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-                                    setKcal();
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    //myRef.child("lista").child(mAuth.getCurrentUser().getUid()).setValue(dateFormat);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-                                    setKcal();
-                                } else {
-
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
+//                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                if (!dataSnapshot.exists()) {
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).setValue(dateFormat);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+//                                    setKcal(chooser);
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
+//                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                if (!dataSnapshot.exists()) {
+//                                    //myRef.child("lista").child(mAuth.getCurrentUser().getUid()).setValue(dateFormat);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+//                                    setKcal(chooser);
+//                                } else {
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
                         myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    //myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-                                }
+
+                                //myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).setValue(chooser);
+                                //  myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).setValue(name);
+                                myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+
                             }
 
                             @Override
@@ -225,46 +229,46 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
                             }
                         });
-                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-                                }
-                                if (dataSnapshot.exists()) {
-                                    if (dataSnapshot.getValue().equals(name)) {
-                                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-
-                                    }
-                                    if (!dataSnapshot.getValue().equals(name)) {
-                                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
-
-
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").setValue(0.0);
-
-                                } else {
-
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
+//                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                if (!dataSnapshot.exists()) {
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+//                                }
+//                                if (dataSnapshot.exists()) {
+//                                    if (dataSnapshot.getValue().equals(name)) {
+//                                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+//
+//                                    }
+//                                    if (!dataSnapshot.getValue().equals(name)) {
+//                                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child(chooser).child(name).setValue(produkt);
+//
+//
+//                                    }
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
+//                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                if (!dataSnapshot.exists()) {
+//                                    myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").setValue(0.0);
+//
+//                                } else {
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
 
                         setKcal();
 
@@ -286,29 +290,108 @@ public class AddDailyProductsFrom extends AppCompatActivity {
     }
 
     public void setKcal() {
+
+
         myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("sniadanie").addValueEventListener(new ValueEventListener() {
-            Map<String, Double> map = new HashMap<>();
-            double curKcal;
+            Map<String, Produkt> map = new HashMap<>();
+            double curKcal = 0;
+            double curProtein = 0;
+            double curCarbs = 0;
+            double curFat = 0;
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    map.put(noteDataSnapshot.getKey(), noteDataSnapshot.getValue(Produkt.class).getKcal());
+                    map.put(noteDataSnapshot.getKey(), new Produkt(noteDataSnapshot.getValue(Produkt.class).getProtein(),
+                            noteDataSnapshot.getValue(Produkt.class).getCarbs(),
+                            noteDataSnapshot.getValue(Produkt.class).getFat(),
+                            noteDataSnapshot.getValue(Produkt.class).getKcal()));
+
                 }
-                for (Map.Entry<String, Double> entry : map.entrySet()) {
-                    curKcal += entry.getValue();
+                for (Map.Entry<String, Produkt> entry : map.entrySet()) {
+                    curKcal += entry.getValue().getKcal();
+                    curProtein += entry.getValue().getProtein();
+                    curCarbs += entry.getValue().getCarbs();
+                    curFat += entry.getValue().getFat();
+
                 }
+
                 myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("obiad").addValueEventListener(new ValueEventListener() {
-                    Map<String, Double> map = new HashMap<>();
+                    Map<String, Produkt> map = new HashMap<>();
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                            map.put(noteDataSnapshot.getKey(), noteDataSnapshot.getValue(Produkt.class).getKcal());
+                            map.put(noteDataSnapshot.getKey(), new Produkt(noteDataSnapshot.getValue(Produkt.class).getKcal(),
+                                    noteDataSnapshot.getValue(Produkt.class).getProtein(),
+                                    noteDataSnapshot.getValue(Produkt.class).getCarbs(),
+                                    noteDataSnapshot.getValue(Produkt.class).getFat()));
+
                         }
-                        for (Map.Entry<String, Double> entry : map.entrySet()) {
-                            curKcal += entry.getValue();
+                        for (Map.Entry<String, Produkt> entry : map.entrySet()) {
+                            curKcal += entry.getValue().getKcal();
+                            curProtein += entry.getValue().getProtein();
+                            curCarbs += entry.getValue().getCarbs();
+                            curFat += entry.getValue().getFat();
+
                         }
+                        myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kolacja").addValueEventListener(new ValueEventListener() {
+                            Map<String, Produkt> map = new HashMap<>();
+
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                                    map.put(noteDataSnapshot.getKey(), new Produkt(noteDataSnapshot.getValue(Produkt.class).getKcal(),
+                                            noteDataSnapshot.getValue(Produkt.class).getProtein(),
+                                            noteDataSnapshot.getValue(Produkt.class).getCarbs(),
+                                            noteDataSnapshot.getValue(Produkt.class).getFat()));
+
+                                }
+                                for (Map.Entry<String, Produkt> entry : map.entrySet()) {
+                                    curKcal += entry.getValue().getKcal();
+                                    curProtein += entry.getValue().getProtein();
+                                    curCarbs += entry.getValue().getCarbs();
+                                    curFat += entry.getValue().getFat();
+
+                                }
+                                myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("przekaski").addValueEventListener(new ValueEventListener() {
+                                    Map<String, Produkt> map = new HashMap<>();
+
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                                            map.put(noteDataSnapshot.getKey(), new Produkt(noteDataSnapshot.getValue(Produkt.class).getKcal(),
+                                                    noteDataSnapshot.getValue(Produkt.class).getProtein(),
+                                                    noteDataSnapshot.getValue(Produkt.class).getCarbs(),
+                                                    noteDataSnapshot.getValue(Produkt.class).getFat()));
+
+                                        }
+                                        for (Map.Entry<String, Produkt> entry : map.entrySet()) {
+                                            curKcal += entry.getValue().getKcal();
+                                            curProtein += entry.getValue().getProtein();
+                                            curCarbs += entry.getValue().getCarbs();
+                                            curFat += entry.getValue().getFat();
+
+                                        }
+                                        kcalRef.setValue(BigDecimal.valueOf(curKcal).setScale(2, RoundingMode.HALF_UP).doubleValue());
+                                        Produkt produkt = new Produkt(curProtein, curCarbs, curFat);
+                                        macroRef.setValue(produkt);
+                                        System.out.println(produkt.getProtein() + " ----------- " + produkt.getCarbs() + " _---------- " + produkt.getFat());
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
 
                     }
 
@@ -317,45 +400,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
                     }
                 });
-                myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kolacja").addValueEventListener(new ValueEventListener() {
-                    Map<String, Double> map = new HashMap<>();
 
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                            map.put(noteDataSnapshot.getKey(), noteDataSnapshot.getValue(Produkt.class).getKcal());
-                        }
-                        for (Map.Entry<String, Double> entry : map.entrySet()) {
-                            curKcal += entry.getValue();
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("przekaski").addValueEventListener(new ValueEventListener() {
-                    Map<String, Double> map = new HashMap<>();
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                            map.put(noteDataSnapshot.getKey(), noteDataSnapshot.getValue(Produkt.class).getKcal());
-                        }
-                        for (Map.Entry<String, Double> entry : map.entrySet()) {
-                            curKcal += entry.getValue();
-                        }
-                        kcalRef.setValue(curKcal);
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
 
             }
 
@@ -363,7 +408,9 @@ public class AddDailyProductsFrom extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         });
+
 
     }
 

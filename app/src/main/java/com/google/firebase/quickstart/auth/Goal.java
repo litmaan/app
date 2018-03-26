@@ -85,6 +85,8 @@ public class Goal extends AppCompatActivity {
             Matcher heightMatcher = pattern.matcher(heightString);
 
             myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("kcal").setValue(0.0);
+            myRef.child("lista").child(mAuth.getCurrentUser().getUid()).child(dateFormat).child("curMacro").setValue(new Produkt(0.0,0.0,0.0));
+
             if (ageString.isEmpty() || weightString.isEmpty() || heightString.isEmpty()) {
                 Toast.makeText(Goal.this, "Wszystkie pola muszą być uzupełnione", Toast.LENGTH_SHORT).show();
             } else if (!ageMatcher.matches() || !weightMatcher.matches() || !heightMatcher.matches()) {

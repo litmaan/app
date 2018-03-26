@@ -11,13 +11,21 @@ public class UserMacro {
     public String fat;
     public String bmi;
 
-
+    public double doublePprotein;
+    public double  doublearbs;
+    public double doubleFat;
+public UserMacro(){}
     public UserMacro(String kcal, String protein, String carbs, String fat, String bmi) {
         this.kcal = kcal;
         this.protein = protein;
         this.carbs = carbs;
         this.fat = fat;
         this.bmi = bmi;
+    }
+    public UserMacro(double protein, double carbs, double fat) {
+        this.doublePprotein = protein;
+        this.doublearbs= carbs;
+        this.doubleFat = fat;
     }
 
     public String getKcal() {

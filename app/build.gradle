@@ -7,7 +7,7 @@ android {
     flavorDimensions "minSdkVersion"
     defaultConfig {
         applicationId "com.google.firebase.quickstart.auth"
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -46,6 +46,7 @@ dependencies {
     compile 'com.google.gms:google-services:3.1.0'
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
+    compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     implementation("com.mikepenz:materialdrawer:6.0.6@aar") {
         transitive = true
     }

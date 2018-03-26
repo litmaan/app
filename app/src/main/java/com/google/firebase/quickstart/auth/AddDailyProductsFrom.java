@@ -126,7 +126,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                     if (productAmount.getText().toString().isEmpty()) {
                         productAmount.setText("100");
                     }
-                   
+
 
 
 

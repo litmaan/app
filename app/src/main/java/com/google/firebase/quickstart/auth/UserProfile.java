@@ -34,6 +34,8 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,6 +70,9 @@ public class UserProfile extends AppCompatActivity {
     public TextView curCarbsGoal;
     public TextView curFatGoal;
 
+    public TextView proteinPoz;
+    public TextView carbsPoz;
+    public TextView fatPoz;
 
     @Override
 
@@ -94,13 +99,17 @@ public class UserProfile extends AppCompatActivity {
         carbsGoal = (TextView) findViewById(R.id.carbsGoal);
         fatGoal = (TextView) findViewById(R.id.fatGoal);
 
-//        curProteinGoal = (TextView)findViewById(R.id.curProteinGoal);
-//        curCarbsGoal = (TextView)findViewById(R.id.curCarbsGoal);
-//        curFatGoal = (TextView)findViewById(R.id.curFatGoal);
+        curProteinGoal = (TextView)findViewById(R.id.curProteinGoal);
+       curCarbsGoal = (TextView)findViewById(R.id.curCarbsGoal);
+     curFatGoal = (TextView)findViewById(R.id.curFatGoal);
 
         proteinBar = (RoundCornerProgressBar) findViewById(R.id.proteinBar);
         carbsBar = (RoundCornerProgressBar) findViewById(R.id.carbsBar);
         fatBar = (RoundCornerProgressBar) findViewById(R.id.fatBar);
+
+        proteinPoz = (TextView)findViewById(R.id.proteinPoz);
+        carbsPoz = (TextView)findViewById(R.id.carbsPoz);
+        fatPoz = (TextView)findViewById(R.id.fatPoz);
 
         proteinBar.setProgressColor(Color.parseColor("#ed3b27"));
         proteinBar.setProgressBackgroundColor(Color.parseColor("#808080"));
@@ -217,20 +226,26 @@ public class UserProfile extends AppCompatActivity {
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     switch (entry.getKey()) {
                         case "protein":
-                            //curProteinGoal.setText(entry.getValue());
+                            curProteinGoal.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(entry.getValue()))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
                             double pomPro= (Double.valueOf(entry.getValue())/Double.valueOf(proteinGoal.getText().toString()))*100;
-                            proteinBar.setProgress(Math.round(pomPro));
+                            proteinBar.setProgress((float) pomPro);
+                            double proteinPozDouble = Double.valueOf(proteinGoal.getText().toString()) - Double.valueOf(curProteinGoal.getText().toString());
+                            proteinPoz.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(proteinPozDouble))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
 
                             break;
                         case "carbs":
-                           // curCarbsGoal.setText(entry.getValue());
+                           curCarbsGoal.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(entry.getValue()))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
                             double pomCar = (Double.valueOf(entry.getValue())/Double.valueOf(carbsGoal.getText().toString()))*100;
-                            carbsBar.setProgress(Math.round(pomCar));
+                            carbsBar.setProgress((float) pomCar);
+                            double carbsPozDouble = Double.valueOf(carbsGoal.getText().toString()) - Double.valueOf(curCarbsGoal.getText().toString());
+                            carbsPoz.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(carbsPozDouble))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
                             break;
                         case "fat":
-                           // curFatGoal.setText(entry.getValue());
+                           curFatGoal.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(entry.getValue()))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
                             double pomFa = (Double.valueOf(entry.getValue())/Double.valueOf(fatGoal.getText().toString()))*100;
-                            fatBar.setProgress(Math.round(pomFa));
+                            fatBar.setProgress((float) pomFa);
+                            double fatPozDouble = Double.valueOf(fatGoal.getText().toString()) - Double.valueOf(curFatGoal.getText().toString());
+                            fatPoz.setText(String.valueOf(BigDecimal.valueOf(Double.valueOf(String.valueOf(fatPozDouble))).setScale(2, RoundingMode.HALF_UP).doubleValue()));
                             break;
                         default:
                             break;

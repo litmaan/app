@@ -272,7 +272,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
 
                         setKcal();
 
-                        Intent intent = new Intent(AddDailyProductsFrom.this, AddDailyProducts.class);
+                        Intent intent = new Intent(AddDailyProductsFrom.this, UserProfile.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                         startActivity(intent);

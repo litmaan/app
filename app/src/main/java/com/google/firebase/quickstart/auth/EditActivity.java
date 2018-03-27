@@ -113,7 +113,7 @@ getFromDatabase();
                 RealtimeDatabase rd = new RealtimeDatabase();
                 rd.setValue(user,macro);
                 Toast.makeText(EditActivity.this, "Wysłano", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(EditActivity.this, EditOrDelete.class);
+                Intent intent = new Intent(EditActivity.this, UserProfile.class);
                 startActivity(intent);
             }
         }

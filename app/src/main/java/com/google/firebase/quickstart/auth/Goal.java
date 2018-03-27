@@ -113,7 +113,9 @@ public class Goal extends AppCompatActivity {
 
                 Toast.makeText(Goal.this, "Wysłano", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Goal.this, UserProfile.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+
             }
         }
     };

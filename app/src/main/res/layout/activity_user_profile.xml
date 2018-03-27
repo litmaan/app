@@ -205,20 +205,20 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                >
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="fill_horizontal">
 
                     <TextView
                         android:id="@+id/textView10"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:gravity="center"
                         android:text="Protein" />
 
@@ -227,42 +227,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
-                        android:layout_weight="3"
                         app:rcBackgroundPadding="5dp">
 
 
                     </com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
 
-
-                        <TextView
-                            android:id="@+id/proteinGoal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="6666" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/proteinGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="6666" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_margin="10dp"
-                    >
+                    android:gravity="fill_horizontal">
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:gravity="center"
                         android:text="Carbs" />
 
@@ -271,41 +265,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
-                        android:layout_weight="3"
                         app:rcBackgroundPadding="5dp">
 
 
                     </com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
 
-
-
-                        <TextView
-                            android:id="@+id/carbsGoal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="6666" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/carbsGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="6666" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:gravity="fill_horizontal"
+                    android:weightSum="5"
+                    >
 
                     <TextView
                         android:id="@+id/FatGoal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:gravity="center"
                         android:text="Fat" />
 
@@ -313,27 +304,30 @@
                         android:id="@+id/fatBar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        app:rcBackgroundPadding="5dp">
+                        app:rcBackgroundPadding="5dp"
+                        android:layout_weight="3">
 
                     </com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-
-
-                        <TextView
-                            android:id="@+id/fatGoal"
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="6666" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/fatGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="6666"
+                        android:layout_weight="1"/>
 
                 </TableRow>
 

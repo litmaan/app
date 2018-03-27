@@ -273,6 +273,8 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                         setKcal();
 
                         Intent intent = new Intent(AddDailyProductsFrom.this, AddDailyProducts.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                         startActivity(intent);
 
                     } else {
@@ -511,6 +513,7 @@ public class AddDailyProductsFrom extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     mAuth.signOut();
                     Intent intent = new Intent(AddDailyProductsFrom.this, EmailPasswordActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             });

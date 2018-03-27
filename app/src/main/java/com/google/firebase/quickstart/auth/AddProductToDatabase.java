@@ -60,6 +60,11 @@ public class AddProductToDatabase extends AppCompatActivity {
             ProductsDatabase pd = new ProductsDatabase();
             pd.sendProdukt(produkt);
             Toast.makeText(AddProductToDatabase.this, "Wysłano produkt do bazy", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(AddProductToDatabase.this,UserProfile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+startActivity(intent);
+
+
         }
     };
 

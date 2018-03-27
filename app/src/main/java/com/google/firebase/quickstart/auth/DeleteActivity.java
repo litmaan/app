@@ -101,6 +101,8 @@ public class DeleteActivity extends AppCompatActivity {
 
     private void updateUI() {
         Intent intent = new Intent(this, EmailPasswordActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         startActivity(intent);
     }
     @Override

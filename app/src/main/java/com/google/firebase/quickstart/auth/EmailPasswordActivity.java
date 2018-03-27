@@ -154,6 +154,8 @@ public class EmailPasswordActivity extends BaseActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
                             Intent intent = new Intent(EmailPasswordActivity.this,UserProfile.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -245,7 +247,10 @@ public class EmailPasswordActivity extends BaseActivity implements
 //
 //            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
             Intent intent = new Intent(this, Goal.class);
+
+
             intent.putExtra("auth",String.valueOf(mAuth));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
 

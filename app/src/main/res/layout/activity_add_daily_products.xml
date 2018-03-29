@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#CCCCCC"
     android:layout_height="match_parent"
     tools:context="com.google.firebase.quickstart.auth.AddDailyProducts"
     >
@@ -18,15 +19,16 @@
             android:layout_height="50dp"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
-
+            android:gravity="center"
             android:theme="@style/AppTheme"
             app:popupTheme="@style/AppTheme">
 
         </android.support.v7.widget.Toolbar>
 
         <ListView
+            android:background="@drawable/listviewborder"
             android:id="@+id/listView"
-            style="@style/Widget.AppCompat.ListView"
+            android:dividerHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp"
@@ -34,10 +36,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
-            android:dividerHeight="10dp"
-            android:fadingEdge="none|horizontal"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
+             />
+
     </LinearLayout>
 
 

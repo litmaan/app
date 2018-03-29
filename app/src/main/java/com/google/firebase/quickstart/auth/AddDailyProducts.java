@@ -158,7 +158,7 @@ public void setList(){
             for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
                 String name = noteDataSnapshot.getKey();
 
-                list.add(name);
+                list.add(name.toUpperCase());
 
             }
             arrayAdapter = new ArrayAdapter<String>(AddDailyProducts.this, android.R.layout.simple_list_item_1, list);
